@@ -13,4 +13,4 @@ jobs:
           who-to-greet: John
       - name: Log Greeting Time 
        # run: echo "${{ steps.greet.outputs.time }}"
-        run: echo "time=VALUE" >>$GITHUB_OUTPUT
+        run: echo "steps.greet.outputs.time=VALUE" >>$GITHUB_OUTPUT
