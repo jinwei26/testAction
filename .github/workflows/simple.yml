@@ -2,7 +2,7 @@
 
 name: shell commands
 
-on: [push]
+on: []
 
 jobs:
   run-shell-command:
