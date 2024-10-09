@@ -1,6 +1,9 @@
 name: Actions Worflow
 
-on: [push, pull_request]
+on: 
+  schedule:
+    # 分钟 小时 天 月  周
+    - cron: "* * * * * "
 
 jobs:
   run-github-actions:
