@@ -1,9 +1,16 @@
 name: Actions Worflow
 
 on: 
-  schedule:
+  repository_dispatch:
+    types: [build]
+
+  #schedule:
     # 分钟 小时 天 月  周
-    - cron: "* * * * * "
+    # https://crontab.guru/
+    #- cron: "* * * * * "
+    # push:
+  pull_request:
+    types: [closed,assigned,opened,reopened]
 
 jobs:
   run-github-actions:
