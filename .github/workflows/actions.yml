@@ -1,8 +1,22 @@
 name: Actions Worflow
 
 on: 
-  repository_dispatch:
-    types: [build]
+  push:
+    branches-ignore:
+      - master
+      - 'feature/*'    # 一个* 和 2个 ** 的区别
+      - 'feature/**'
+    tags:
+      - v1.*
+    paths:
+      # 每当我们推送一个JavaScript 文件时，这个工作流就会运行。
+      - '**.js' 
+      - '!filename.js'  # ! + 文件名 这个工作也会被忽略
+    paths-ignore:
+      # 如果有任何内容被推送到这个doc 路径时，这个工作流不会运行，被忽略
+      - 'doc/**'   
+  #repository_dispatch:
+  #  types: [build]
 
   #schedule:
     # 分钟 小时 天 月  周
