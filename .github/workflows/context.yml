@@ -10,6 +10,8 @@ jobs:
       - name: dump
         run: |
           echo ${{ contains( 'hello','ll')}}
+          echo ${{ startsWith( 'hello','he')}}
+          echo ${{ format('hello {0} {1} {2}','word','!','!')}}
           
   dump_contexts_to_log:
     runs-on: ubuntu-latest
