@@ -11,7 +11,7 @@ jobs:
         # 通过设置gpg参数 解密 虚拟机上的gpg加密文件，解密后放在主目录HOME下
         run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_SECRET"  --output $HOME/my_secret.json my_secret.json.gpg
         env: 
-          GPG_SECRET: ${{ secret.GPG_SECRET}}  # 密钥给 变量
+          GPG_SECRET: ${{ secrets.GPG_SECRET}}  # 密钥给 变量
       - name: 打印解密的内容
         # cat 接收文件路径的bash命令 它只输出该文件的内容
         run: cat $HOME/my_secret.json
