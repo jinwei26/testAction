@@ -6,7 +6,7 @@ jobs:
   functions:
     runs-on: ubuntu-16.04
     steps: 
-      - name: Dump
+      - name: dump
         run: |
         # contains 检查第二个参数中的字符串是否包含在第一个参数中的字符串中
           echo ${{ contains( 'hello','ll') }}
