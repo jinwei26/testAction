@@ -3,12 +3,23 @@ name: Context testing
 on: push
 
 jobs:
+  functions:
+    runs-on: ubuntu-16.04
+    steps:
+      - name: dump
+        run: |
+        # contains 检查第二个参数中的字符串是否包含在第一个参数中的字符串中
+          echo ${{ contains( 'hello','ll') }}
+        # startsWith 检查一个字符串是否以另一个字符串开头
+          echo ${{ startsWith( 'hello','he') }}
+          echo ${{ endsWith( 'hello','lo') }}
+          echo ${{ format( 'hello {0} {1} {2}','Word','!','!') }}
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}  # 使用toJson函数
         run: echo "$GITHUB_CONTEXT"
       - name: Dump job context
         env:
