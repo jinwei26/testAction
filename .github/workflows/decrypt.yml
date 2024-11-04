@@ -9,8 +9,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: 解密文件  # gpg 已经安装在了虚拟机上
         # 通过设置gpg参数 解密 虚拟机上的gpg加密文件，解密后放在主目录HOME下
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_SECRET" \
-        --output $HOME/my_secret.json my_secret.json.gpg
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_SECRET"  --output $HOME/my_secret.json my_secret.json.gpg
         env: 
           GPG_SECRET: ${{ secret.GPG_SECRET}}  # 密钥给 变量
       - name: 打印解密的内容
