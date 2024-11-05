@@ -1,18 +1,19 @@
 name: Context testing
 # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/evaluate-expressions-in-workflows-and-actions#startswith
 on: push
 # contains 检查第二个参数中的字符串是否包含在第一个参数中的字符串中
 # startsWith 检查一个字符串是否以另一个字符串开头
 jobs:
   functions:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps: 
       - name: dump
         run: |
           echo ${{ contains( 'hello','ll')}}
           echo ${{ startsWith( 'hello','he')}}
+          echo ${{ endsWith('hello','lo')}}
           echo ${{ format('hello {0} {1} {2}','word','!','!')}}
-          
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:
