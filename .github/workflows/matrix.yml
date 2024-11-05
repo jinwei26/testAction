@@ -3,6 +3,7 @@ on: push
 
 jobs:
   node-version:
+    runs-on: ubuntu-latest
     steps:
       - name: 记录 node 版本
         run: node -v   #显示当前版本
@@ -11,3 +12,5 @@ jobs:
       # with 是条件 指定 node 的版本号
         with:
           node-version: 6  # 将 '10.x'  改为你想要的版本 如：6
+      - name: 显示 node 版本号
+        run: node -v
