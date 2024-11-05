@@ -23,7 +23,7 @@ jobs:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}  # 使用toJson函数
-        run: echo "$GITHUB_CONTEXT"
+        run: eccho "$GITHUB_CONTEXT"   # 制造一个错误 eccho
       - name: Dump job context
         # failure 只会在上一步失败时返回 true 
         if: failure() 
