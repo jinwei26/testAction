@@ -35,8 +35,6 @@ jobs:
           STEPS_CONTEXT: ${{ toJson(steps) }}
         run: echo "$STEPS_CONTEXT"
       - name: Dump runner context
-        # 如果上一步失败，下面的也总会执行
-        if: always()    
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: echo "$RUNNER_CONTEXT"
@@ -48,6 +46,3 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
         run: echo "$MATRIX_CONTEXT"
- # failure 只会在上一步失败时返回 true,
- # success 如果上一步成功，将返回 true,
- # always 总是返回true,
