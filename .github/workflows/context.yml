@@ -17,8 +17,8 @@ jobs:
           echo ${{ format('hello {0} {1} {2}','word','!','!')}}
   dump_contexts_to_log:
     runs-on: ubuntu-latest
-    # 只会在推送时运行以下的程序
-    if: github.event_name == 'pull'
+    # 如果是 pull 下面的不会被执行
+    if: github.event_name == 'push'
     steps:
       - name: Dump GitHub context
         env:
@@ -26,7 +26,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Dump job context
         # failure 只会在上一步失败时返回 true 
-        if: failure()
+        if: failure() 
         env:
           JOB_CONTEXT: ${{ toJson(job) }}
         run: echo "$JOB_CONTEXT"
@@ -35,6 +35,7 @@ jobs:
           STEPS_CONTEXT: ${{ toJson(steps) }}
         run: echo "$STEPS_CONTEXT"
       - name: Dump runner context
+        if: always()
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: echo "$RUNNER_CONTEXT"
