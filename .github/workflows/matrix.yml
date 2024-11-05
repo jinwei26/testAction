@@ -1,0 +1,13 @@
+name: Matrix-矩阵
+on: push
+
+jobs:
+  node-version:
+    steps:
+      - name: 记录 node 版本
+        run: node -v   #显示当前版本
+        # 更换使用的 node 版本
+      - uses: actions/setup-node@v1
+      # with 是条件 指定 node 的版本号
+        with:
+          node-version: 6  # 将 '10.x'  改为你想要的版本 如：6
