@@ -8,11 +8,22 @@ jobs:
       matrix:  # 三乘三矩阵 2个数组，每个3个元素 运行 9 次
         os: [macos-latest,ubuntu-latest,windows-latest]
         node_version: [6,8,10] # 定义任何名称的一个数组,数组值为版本号
+        include: # 包含的意思
+          - os: ubuntu-latest
+            node_version: 8
+            is_ubuntu_8: "true"
+        exclude: # 排除 版本号为 6 的ubuntu-latest
+          - os: ubuntu-latest
+            node_version: 6
+          - os: macos-latest
+            node_version: 8
     #  max-parallel: 0   # 三个作业将并行运行，不管哪个出错
       # 快速失败选项，如果这些作业之一失败，则其他作业都将停止
       # 如果为 false 则每个作业都将独立于其他作业的结果运行 
     #  fail-fast: true  # 暂时不需要  另用 最大并行 max-parallel: 0
     runs-on: ${{ matrix.os }}  # ubuntu-latest
+    env:
+      IS_UBUNTU_8: ${{ matrix.is_ubuntu_8 }}  # 添加一个环境变量
     steps:
       - name: 记录 node 版本
         run: node -v   #显示当前版本
@@ -22,4 +33,6 @@ jobs:
         with:   # 利用上下文表达式替换下面的 版本 6
           node-version: ${{ matrix.node_version }}  # 将 '10.x'  改为你想要的版本 如：6
       - name: 显示 node 版本号
-        run: node -v
+        run: |
+          node -v
+          echo $IS_UBUNTU_8
