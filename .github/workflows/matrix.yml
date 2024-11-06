@@ -3,14 +3,23 @@ on: push
 
 jobs:
   node-version:
-    runs-on: ubuntu-latest
+    # 添加 矩阵 键 strategy.Matrix
+    strategy:
+      matrix:  # 三乘三矩阵 2个数组，每个3个元素 运行 9 次
+        os: [macos-lates,ubuntu-latest,windows-latest]
+        node_version: [6,8,10] # 定义任何名称的一个数组,数组值为版本号
+    #  max-parallel: 0   # 三个作业将并行运行，不管哪个出错
+      # 快速失败选项，如果这些作业之一失败，则其他作业都将停止
+      # 如果为 false 则每个作业都将独立于其他作业的结果运行 
+    #  fail-fast: true  # 暂时不需要  另用 最大并行 max-parallel: 0
+    runs-on: ${{ matrix.os }}  # ubuntu-latest
     steps:
       - name: 记录 node 版本
         run: node -v   #显示当前版本
         # 更换使用的 node 版本
       - uses: actions/setup-node@v1
       # with 是条件 指定 node 的版本号
-        with:
-          node-version: 6  # 将 '10.x'  改为你想要的版本 如：6
+        with:   # 利用上下文表达式替换下面的 版本 6
+          node-version: ${{ matrix.node_version }}  # 将 '10.x'  改为你想要的版本 如：6
       - name: 显示 node 版本号
         run: node -v
