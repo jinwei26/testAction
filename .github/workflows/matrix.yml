@@ -6,7 +6,7 @@ jobs:
     # 添加 矩阵 键 strategy.Matrix
     strategy:
       matrix:  # 三乘三矩阵 2个数组，每个3个元素 运行 9 次
-        os: [macos-lates,ubuntu-latest,windows-latest]
+        os: [macos-latest,ubuntu-latest,windows-latest]
         node_version: [6,8,10] # 定义任何名称的一个数组,数组值为版本号
     #  max-parallel: 0   # 三个作业将并行运行，不管哪个出错
       # 快速失败选项，如果这些作业之一失败，则其他作业都将停止
