@@ -1,5 +1,5 @@
 name: Matrix-矩阵
-on: push
+on: pull_request # push为推送请求 pull_request为拉取请求
 
 jobs:
   node-version:

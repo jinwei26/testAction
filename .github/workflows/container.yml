@@ -1,0 +1,21 @@
+name: container-容器
+on: push
+
+jobs:
+  docker-steps:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20-alpine3.19
+    steps:
+      - name: 在虚拟机上打印node版本号
+        run: node -v
+      - name: 在docker上打印hello word
+        uses: docker://node:18-alpine3.19
+        with:  # 用with覆盖Docker映像的入口点
+          entrypoint: /bin/echo     # Docker的入口点 echo的路径
+          args: hello word  # 你可以认为这是一个参数数组 [''] 参数作为字符串输入
+      - name: 在docker上打印node版本号
+        uses: docker://node:18-alpine3.19
+        with:  # 用with覆盖Docker映像的入口点
+          entrypoint: /usr/local/bin/node     # Docker的入口点 node的路径
+          args: -v  # node后面的命令参数 -v
