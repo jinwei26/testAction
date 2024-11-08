@@ -19,3 +19,9 @@ jobs:
         with:  # 用with覆盖Docker映像的入口点
           entrypoint: /usr/local/bin/node     # Docker的入口点 node的路径
           args: -v  # node后面的命令参数 -v
+      - uses: actions/checkout@v2  # 因为下面要使用存储库的文件，所以加这个
+      - name: 在docker上运行一个script.sh脚本
+        uses: docker://node:18-alpine3.19
+        with:  # 用with覆盖Docker映像的入口点
+          entrypoint: ./script.sh  # 在根文件夹中的文件
+          args: -v  # node后面的命令参数 -v
