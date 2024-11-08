@@ -24,4 +24,4 @@ jobs:
         uses: docker://node:18-alpine3.19
         with:  # 用with覆盖Docker映像的入口点
           entrypoint: ./script.sh  # 在根文件夹中的文件
-          args: -v  # node后面的命令参数 -v
+          args: "Some String"  # node后面的命令参数 -v
