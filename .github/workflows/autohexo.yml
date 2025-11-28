@@ -27,7 +27,8 @@ jobs:
         run: |
           echo "仓库环境变量HEXO_SSH_PUD:${{env.NODE_VERSION}}"
 
-          echo "仓库环境变量HEXO_SSH_PUD:${{env.HEXO_SSH_PUD}}"
+          echo "仓库环境变量HEXO_SSH_PUD:${{vars.HEXO_SSH_PUD}}"
+
 
 
 
