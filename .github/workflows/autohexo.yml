@@ -1,30 +1,31 @@
-name: Blog×Ô¶¯²¿Êğ # ½Å±¾ workflow Ãû³Æ
+name: Blogè‡ªåŠ¨éƒ¨ç½² # è„šæœ¬ workflow åç§°
 
 on:
   push:
-    branches: hexoBackup  # µ±¼à²â main,master µÄ push
-    paths: # ¼à²âËùÓĞ source Ä¿Â¼ÏÂµÄÎÄ¼ş±ä¶¯£¬ËùÓĞ yml,json ºó×ºÎÄ¼şµÄ±ä¶¯¡£
+    branches: main  # å½“ç›‘æµ‹ main,master çš„ push
+    paths: # ç›‘æµ‹æ‰€æœ‰ source ç›®å½•ä¸‹çš„æ–‡ä»¶å˜åŠ¨ï¼Œæ‰€æœ‰ yml,json åç¼€æ–‡ä»¶çš„å˜åŠ¨ã€‚
       - '*.json'
       - '**.yml'
       - '**/source/**'
-env: # ÉèÖÃÈ«¾Ö±äÁ¿
+env: # è®¾ç½®å…¨å±€å˜é‡
   NODE_VERSION: '22.x'
   
 jobs:
-  blog: # ÈÎÎñÃû³Æ
-    timeout-minutes: 30 # ÉèÖÃ 30 ·ÖÖÓ³¬Ê±
-    runs-on: ubuntu-latest # Ö¸¶¨×îĞÂ ubuntu ÏµÍ³
+  blog: # ä»»åŠ¡åç§°
+    timeout-minutes: 30 # è®¾ç½® 30 åˆ†é’Ÿè¶…æ—¶
+    runs-on: ubuntu-latest # æŒ‡å®šæœ€æ–° ubuntu ç³»ç»Ÿ
     
     steps:
-      - uses: actions/checkout@v4 # À­È¡²Ö¿â´úÂë
+      - uses: actions/checkout@v4 # æ‹‰å–ä»“åº“ä»£ç 
       
-      - name: ÉèÖÃnode»·¾³ ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4 # ÉèÖÃ node.js »·¾³
+      - name: è®¾ç½®nodeç¯å¢ƒ ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4 # è®¾ç½® node.js ç¯å¢ƒ
         with: 
           node-version:  ${{ env.NODE_VERSION }}
-          cache: 'npm'  # ×Ô¶¯»º´æ npm
+          cache: 'npm'  # è‡ªåŠ¨ç¼“å­˜ npm
           
-      - name: ¶ÁÈ¡²Ö¿â»·¾³±äÁ¿HEXO_SSH_PUD
+      - name: è¯»å–ä»“åº“ç¯å¢ƒå˜é‡HEXO_SSH_PUD
         run: |
-          echo "²Ö¿â»·¾³±äÁ¿HEXO_SSH_PUD:${{secrets.HEXO_SSH_PUD}}
-          echo "²Ö¿â»·¾³±äÁ¿HEXO_SSH_PUD:${{env.HEXO_SSH_PUD}}
+          echo "ä»“åº“ç¯å¢ƒå˜é‡HEXO_SSH_PUD:${{secrets.HEXO_SSH_PUD}}
+
+          echo "ä»“åº“ç¯å¢ƒå˜é‡HEXO_SSH_PUD:${{env.HEXO_SSH_PUD}}
