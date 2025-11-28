@@ -22,10 +22,10 @@ jobs:
         uses: actions/setup-node@v4 # 设置 node.js 环境
         with: 
           node-version:  ${{ env.NODE_VERSION }}
-          cache: 'npm'  # 自动缓存 npm
           
       - name: 读取仓库环境变量HEXO_SSH_PUD
         run: |
           echo "仓库环境变量HEXO_SSH_PUD:${{secrets.HEXO_SSH_PUD}}
 
           echo "仓库环境变量HEXO_SSH_PUD:${{env.HEXO_SSH_PUD}}
+
