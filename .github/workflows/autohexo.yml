@@ -42,7 +42,8 @@ jobs:
           # 写入全局
           git config --global user.name "jinwei26" 
           git config --global user.email "195569807@qq.com"
-          cat ~/.ssh/id_rsa
+          #cat ~/.ssh/id_rsa
+
 
 
 
