@@ -26,10 +26,23 @@ jobs:
       - name: 读取仓库环境变量HEXO_SSH_PUD
         run: |
           echo "仓库环境变量HEXO_SSH_PUD:${{env.NODE_VERSION}}"
-
           echo "仓库环境变量HEXO_SSH_PUD:${{vars.VARS_TEST}}"
-
-
+          
+      # 将ssh写入虚拟主机上
+      - name: 将ssh写入虚拟主机.ssh文件夹上
+        env:
+          HEXO_DEPLOY_PRI: ${{vars.HEXO_SSH_PUD}}
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"  # 设置时区
+          mkdir -p ~/.ssh/  
+          # 使用 ssh-keyscan 命令将远程主机的公钥添加到 known_hosts 文件中
+          echo "$HEXO_DEPLOY_PRI" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          # 写入全局
+          git config --global user.name "jinwei26" 
+          git config --global user.email "195569807@qq.com"
+          cat ~/.ssh/id_rsa
 
 
 
