@@ -25,8 +25,9 @@ jobs:
           
       - name: 读取仓库环境变量HEXO_SSH_PUD
         run: |
-          echo "仓库环境变量HEXO_SSH_PUD:${{env.NODE_VERSION}}
+          echo "仓库环境变量HEXO_SSH_PUD:${{env.NODE_VERSION}}"
 
-          echo "仓库环境变量HEXO_SSH_PUD:${{env.HEXO_SSH_PUD}}
+          echo "仓库环境变量HEXO_SSH_PUD:${{env.HEXO_SSH_PUD}}"
+
 
 
